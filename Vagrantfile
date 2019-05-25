@@ -72,9 +72,9 @@ Vagrant.configure("2") do |config|
     apt-get install -y curl software-properties-common
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
     apt-get install -y ttf-anonymous-pro nodejs
-    npm install -g yarn
     cd /vagrant
-    yarn add --no-bin-links express morgan body-parser
+    npm install --no-bin-links
+    snap install heroku --classic
     cat > /usr/share/lxterminal/lxterminal.conf << EOL
 [general]
 fontname=Anonymous Pro 14
