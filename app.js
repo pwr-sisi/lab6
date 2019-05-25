@@ -6,7 +6,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dbUser = process.env.DBUSER;
 const dbPassword = process.env.DBPASSWORD
-const dbUri = "mongodb+srv://"+dbUser+":"+dbPassword+"@cluster0-egf9l.mongodb.net/sample_mflix?retryWrites=true";
+const dbHost = process.env.DBHOST
+const dbUri = "mongodb+srv://"+dbUser+":"+dbPassword+"@"+dbHost+"/sample_mflix?retryWrites=true";
 mongoose.connect(dbUri, { useNewUrlParser: true, useFindAndModify: false });
 
 const movieSchema = new mongoose.Schema({title:String,rated:String,runtime:Number,year:Number});
