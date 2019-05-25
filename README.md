@@ -48,18 +48,19 @@ $ export DBHOST=<adres_klastra>
 $ npm start
 ```
 5. Otwórz stronę `http://localhost:3000` aby sprawdzić czy aplikacja działa.
-6. Zainstaluj w przeglądarce Firefox wtyczkę RESTED. Kliknij na pasku narzędzi przeglądarki ikonę wtyczki RESTED: `</>`.
-7. Przetestuj funkcje aplikacji:
+6. Zainstaluj w przeglądarce Firefox wtyczkę RESTED: kliknij menu Add-ons, wybierz Extensions, wyszukaj i zainstaluj rozszerzenie RESTED.
+7. Kliknij na pasku narzędzi przeglądarki ikonę wtyczki RESTED: `</>`.
+8. Przetestuj funkcje aplikacji:
    1. GET: W polu Request wybierz opcję GET, obok wpisz `http://localhost:3000/movie/573a1390f29313caabcd50e5` i kliknij Send request. W przeglądarce powinien pojawić się film `Gertie the Dinosaur`.
    2. PUT: Zmień typ zapytania na PUT, ustaw Request body -> Type jako JSON. W polach Name i Value wpisz odpowiednio: `title` i `Gertie The Dinosaur` i prześlij żądanie. Zobacz czy tytuł filmu się zmienił?
    3. DELETE: Zmień typ zapytania na DELETE. Wyślij zapytanie. Spróbuj wyświetlić film metodą GET.
-   4 POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź czy Twój film pojawił się w bazie.
+   4. POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź czy Twój film pojawił się w bazie.
 
 ## Hosting - Heroku
 
 1. Załóż konto na stronie https://www.heroku.com klikając `Get started for free`.
 
-## Wdrożenie aplikacji w hostingu
+## Wdrożenie aplikacji w hostingu Heroku
 
 1. Zaloguj się do heroku
 ```
@@ -89,3 +90,21 @@ heroku open
 ## Własne API
 1. Przerób aplikację tak, aby korzystała z innej z przykładowych kolekcji w klastrze Atlas MongoDB.
 Wskazówka: musisz zmodyfikować co najmniej: nazwę bazy danych, nazwę kolekcji i schemat. Adres hosta, użytkownik i hasło nie zmieniają się.
+
+## Dodatkowe zadanie: lokalne uruchomiene aplikacji Heroku
+1. Otwórz okno LXTerminal, przejdź do folderu `/vagrant` i utwórz plik `.env`:
+```
+$ cd /vagrant
+$ leafpad .env
+```
+Plik `.env` zawiera zmienne środowiskowe przekazywane do aplikacji. Wpisz (używając swoich danych):
+```
+DBUSER=newuser1
+DBPASSWORD=VXVMxjGL4J0drEd
+DBHOST=mycluster-egf9l.mongodb.net
+```
+2. Uruchom swoją aplikację przez Heroku:
+```
+heroku local web
+```
+Zwróć uwagę na numer portu przypisany przez Heroku, inny niż domyślny, zawarty w kodzie, 3000.
