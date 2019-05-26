@@ -11,17 +11,17 @@ aplikację na serwerze Heroku.
 
 ## Baza danych - Atlas MongoDB
 
-1. Załóż konto na stronie https://www.mongodb.com/cloud klikając `Get started free` wspisując imię, nazwisko, adres e-mail i hasło.
+1. Załóż konto na stronie https://www.mongodb.com/cloud klikając `Get started free` wpisując imię, nazwisko, adres e-mail i hasło.
 2. Użyj kreatora włączanego po utworzeniu konta:
    1. Kliknij Create new cluster.
-   2. Wybierz Developing a new app. Zapisz podany kod aby móc przez miesiąc używać klastra M10 i kliknij Get started.
-   3.  Kliknij wybranego dostawcę (domyślnie Amazon AWS), a następnie wybierz region oznaczony polem FREE TIER AVAILABLE (najlepiej w Europie).
+   2. Wybierz Developing a new app.
+   3. Kliknij wybranego dostawcę (domyślnie Amazon AWS), a następnie wybierz centrum danych oznaczone polem FREE TIER AVAILABLE (najlepiej w Europie).
    4.  U dołu strony możesz zmienić nazwę klastra (domyślnie Cluster0 - po utworzeniu klastra nie będzie można jej zmienić).
    5.  Kliknij Create cluster. Utworzenie klastra może potrwać 5-10 minut.
 3.  Skonfiguruj swój klaster:
-    1. Utworzenie użytkownika: Kliknij link Security, a potem Add new user. Wpisz nazwę i hasło twojego użytkownika i kliknij Add User.
+    1. Utworzenie użytkownika: Kliknij link Security, a potem Add new user. Wpisz nazwę i hasło twojego użytkownika i kliknij Add User. W haśle nie używaj znaków : i @.
     2. Dopuszczenie połączeń z dowolnego adresu IP: Pozostając w sekcji Security przejdź na zakładkę IP Whitelist i kliknij Add IP address. Kliknij Allow access from anywhere, a następnie Confirm.
-    3.  Wypełnienie klastra danymi: Kliknij link Clusters, a nastęnie w bloku Sandbox kliknij '...', a następnie Load Sample Dataset.
+    3.  Wypełnienie klastra danymi: Kliknij link Clusters, a nastęnie w bloku Sandbox kliknij '...', a potem Load Sample Dataset.
     4.  Przeglądanie klastra: Kliknij Connect. Obejrzyj wyświetlony Connection string i zapisz adres klastra: 
  ```
 mongodb+srv://<nazwa_uzytkownika>:<haslo>@<adres_klastra>/test?retryWrites=true
@@ -37,13 +37,14 @@ mongodb+srv://<nazwa_uzytkownika>:<haslo>@<adres_klastra>/test?retryWrites=true
 $ cd /vagrant
 ```
 
-3. Skonfiguruj zmienne środowiskowe używane przez aplikację:
+3. Skonfiguruj zmienne środowiskowe używane przez aplikację (wpisz swoje dane):
 ```
-$ export DBUSER=<nazwa_uzytkownika>
-$ export DBPASSWORD=<haslo>
-$ export DBHOST=<adres_klastra>
+$ export DBUSER=newuser1
+$ export DBPASSWORD=VXVMxjGL4J0drEd
+$ export DBHOST=mycluster-egf9l.mongodb.net
 ```
-4. Uruchom aplikację:
+Jeśli checesz ustawić te dane na stałe, to dopisz je na końcu pliku `.profile`: `leafpad ~/.profile`. Ustawienia będą ładowane po każdym logowaniu.
+4. Uruchom swoją aplikację:
 ```
 $ npm start
 ```
@@ -52,9 +53,9 @@ $ npm start
 7. Kliknij na pasku narzędzi przeglądarki ikonę wtyczki RESTED: `</>`.
 8. Przetestuj funkcje aplikacji:
    1. GET: W polu Request wybierz opcję GET, obok wpisz `http://localhost:3000/movie/573a1390f29313caabcd50e5` i kliknij Send request. W przeglądarce powinien pojawić się film `Gertie the Dinosaur`.
-   2. PUT: Zmień typ zapytania na PUT, ustaw Request body -> Type jako JSON. W polach Name i Value wpisz odpowiednio: `title` i `Gertie The Dinosaur` i prześlij żądanie. Zobacz czy tytuł filmu się zmienił?
+   2. PUT: Zmień typ zapytania na PUT, ustaw Request body -> Type jako JSON. W polach Name i Value wpisz odpowiednio: `title` i `Gertie the Dinosaur 2`. Sprawdź czy w sekcji `Headers` znajduje się linijka `Content-type:application\json` - jeśli nie, to ponownie ustaw Request body -> Type : JSON. Prześlij żądanie i zobacz czy tytuł filmu się zmienił? Spróbuj zmienić również czas trwania: `runtime` (czas trwania w minutach) i `rated`.
    3. DELETE: Zmień typ zapytania na DELETE. Wyślij zapytanie. Spróbuj wyświetlić film metodą GET.
-   4. POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź czy Twój film pojawił się w bazie.
+   4. POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź w sekcji Heders czy widzisz `application\json`. Prześlij żądanie i sprawdź czy Twój film pojawił się w bazie.
 
 ## Hosting - Heroku
 
@@ -62,24 +63,31 @@ $ npm start
 
 ## Wdrożenie aplikacji w hostingu Heroku
 
-1. Zaloguj się do heroku
+1. Przed wysłaniem aplikcji do Heroku sprawdź czy w folderze `/vagrant` jest repozytorium git: `git status`. Jeśli nie, to zainicjuj je:
+```
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
+```
+3. W katalogu aplikacji Heroku musi znaleźć się plik `Procfile`. Zawiera on wskazówkę jak uruchomić aplikację. Obejrzyj jak wygląda zawartość tego pliku. Na podstawie pliku `Procfile` Heroku rozpoznaje w jakim języku została napisana aplikacja i odpowiednio konfiguruje środowisko wykonawcze.
+2. Zaloguj się do heroku
 ```
 $ heroku login
 ```
    W otwartym oknie przeglądarki podaj swoje konto i hasło. Zamknij okno przeglądarki i wróć do linii poleceń.
-2. Utwórz aplikację Heroku:
+3. Utwórz aplikację Heroku:
 ```
 $ heroku create
 ```
-   Po słowie `create` możesz podać nazwę swojej aplikacji. Heroku przyjmie ją pod warunkiem że nie będzie już zajęta przez kogoś innego. Jeśli nie podasz nazwy Heroku zaproponuje swoją. Zapamiętaj wyświetlony adres swojej aplikacji: np. `https://grateful-badlands-84219.herokuapp.com/`
+   Po słowie `create` możesz podać nazwę swojej aplikacji, np.: `heroku create myapp456`. Heroku przyjmie ją pod warunkiem że nie będzie już zajęta przez kogoś innego. Jeśli nie podasz nazwy, to Heroku zaproponuje swoją. Zapamiętaj wyświetlony adres swojej aplikacji: np. `https://grateful-badlands-84219.herokuapp.com/`
 
-3. Skonfiguruj parametry bazy danych (takie jak wcześniej):
+3. Skonfiguruj zmienne środowiskowe połączenia z bazą danych (takie jak wcześniej):
 ```
 heroku config:set DBUSER=myuser
 heroku config:set DBPASSWORD=mypassword
 heroku config:set DBHOST=myhost
 ```
-4. Wyślij aplikację na serwer Heroku, skonfiguruj rozmiar usługi (za darmo dostajesz tylko 1) i sprawdź czy aplikacja działa:
+4. Wyślij aplikację na serwer Heroku, skonfiguruj rozmiar usługi (za darmo dostajesz tylko 1 jednostkę) i sprawdź czy aplikacja działa:
 ```
 git push heroku master
 heroku ps:scale web=1
