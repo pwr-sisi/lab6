@@ -69,7 +69,7 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
-    apt-get install -y curl software-properties-common
+    apt-get install -y curl software-properties-common firefox
     curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
     apt-get install -y ttf-anonymous-pro nodejs
     cd /vagrant
