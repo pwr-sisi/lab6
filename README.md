@@ -36,15 +36,13 @@ mongodb+srv://<nazwa_uzytkownika>:<haslo>@<adres_klastra>/test?retryWrites=true
 ```
 $ cd /vagrant
 ```
-
 3. Skonfiguruj zmienne środowiskowe używane przez aplikację (zastąp przykładowe wartości swoimi):
 ```
 $ export DBUSER=newuser1
 $ export DBPASSWORD=VXVMxjGL4J0drEd
 $ export DBHOST=mycluster-egf9l.mongodb.net
 ```
-Jeśli checesz ustawić te dane na stałe, to dopisz je na końcu pliku `.profile`: `leafpad ~/.profile`. Ustawienia będą ładowane
-po każdym logowaniu.
+Jeśli checesz ustawić te dane na stałe, to dopisz je na końcu pliku `.profile` używając edytora LeafPad: `leafpad ~/.profile`. Ustawienia będą ładowane po każdym logowaniu.
 4. Uruchom swoją aplikację:
 ```
 $ npm start
