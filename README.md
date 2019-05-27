@@ -37,7 +37,7 @@ mongodb+srv://<nazwa_uzytkownika>:<haslo>@<adres_klastra>/test?retryWrites=true
 $ cd /vagrant
 ```
 
-3. Skonfiguruj zmienne środowiskowe używane przez aplikację (wpisz swoje dane):
+3. Skonfiguruj zmienne środowiskowe używane przez aplikację (zastąp przykładowe wartości swoimi):
 ```
 $ export DBUSER=newuser1
 $ export DBPASSWORD=VXVMxjGL4J0drEd
@@ -81,11 +81,11 @@ $ heroku create
 ```
    Po słowie `create` możesz podać nazwę swojej aplikacji, np.: `heroku create myapp456`. Heroku przyjmie ją pod warunkiem że nie będzie już zajęta przez kogoś innego. Jeśli nie podasz nazwy, to Heroku zaproponuje swoją. Zapamiętaj wyświetlony adres swojej aplikacji: np. `https://grateful-badlands-84219.herokuapp.com/`
 
-3. Skonfiguruj zmienne środowiskowe połączenia z bazą danych (takie jak wcześniej):
+3. Skonfiguruj zmienne środowiskowe połączenia z bazą danych (zastąp przykładowe wartości swoimi):
 ```
-heroku config:set DBUSER=myuser
-heroku config:set DBPASSWORD=mypassword
-heroku config:set DBHOST=myhost
+heroku config:set DBUSER=newuser1
+heroku config:set DBPASSWORD=VXVMxjGL4J0drEd
+heroku config:set DBHOST=mycluster-egf9l.mongodb.net
 ```
 4. Wyślij aplikację na serwer Heroku, skonfiguruj rozmiar usługi (za darmo dostajesz tylko 1 jednostkę) i sprawdź czy aplikacja działa:
 ```
@@ -93,11 +93,13 @@ git push heroku master
 heroku ps:scale web=1
 heroku open
 ```
-5. Tak jak w poprzednim ćwiczeniu przetestuj aplikację działąjącą na Heroku używając przeglądarki Firefox i wtyczki RESTED. 
+5. Tak jak w poprzednim zadaniu przetestuj aplikację działającą na Heroku używając przeglądarki Firefox i wtyczki RESTED. 
      
-## Własne API
-1. Przerób aplikację tak, aby korzystała z innej z przykładowych kolekcji w klastrze Atlas MongoDB.
+## Zadanie
+1. Przerób aplikację tak, aby korzystała z innej przykładowej kolekcji w klastrze Atlas MongoDB.
 Wskazówka: musisz zmodyfikować co najmniej: nazwę bazy danych, nazwę kolekcji i schemat. Adres hosta, użytkownik i hasło nie zmieniają się.
+2. Przerób aplikację tak, aby korzystała z twojej własnej kolekcji w klastrze Atlas MongoDB.
+Wskazówka: na ekranie przeglądania kolekcji kliknij przycisk `Create database` aby utworzyć własną bazę danych i zawartą w niej kolekcję.
 
 ## Dodatkowe zadanie: lokalne uruchomiene aplikacji Heroku
 1. Otwórz okno LXTerminal, przejdź do folderu `/vagrant` i utwórz plik `.env`:
@@ -105,7 +107,7 @@ Wskazówka: musisz zmodyfikować co najmniej: nazwę bazy danych, nazwę kolekcj
 $ cd /vagrant
 $ leafpad .env
 ```
-Plik `.env` zawiera zmienne środowiskowe przekazywane do aplikacji. Wpisz (używając swoich danych):
+Plik `.env` zawiera zmienne środowiskowe przekazywane do aplikacji. Wpisz w nim (zastąp przykładowe wartości swoimi):
 ```
 DBUSER=newuser1
 DBPASSWORD=VXVMxjGL4J0drEd
