@@ -52,9 +52,9 @@ $ npm start
 7. Kliknij na pasku narzędzi przeglądarki ikonę wtyczki RESTED: `</>`.
 8. Przetestuj funkcje aplikacji:
    1. GET: W polu Request wybierz opcję GET, obok wpisz `http://localhost:3000/movie/573a1390f29313caabcd50e5` i kliknij Send request. W przeglądarce powinien pojawić się film `Gertie the Dinosaur`.
-   2. PUT: Zmień typ zapytania na PUT, ustaw Request body -> Type jako JSON. W polach Name i Value wpisz odpowiednio: `title` i `Gertie the Dinosaur 2`. Sprawdź czy w sekcji `Headers` znajduje się linijka `Content-type:application\json` - jeśli nie, to ponownie ustaw Request body -> Type : JSON. Prześlij żądanie i zobacz czy tytuł filmu się zmienił? Spróbuj zmienić również czas trwania: `runtime` (czas trwania w minutach) i `rated`.
+   2. PUT: Zmień typ zapytania na PUT, ustaw Request body -> Type jako JSON. W polach Name i Value wpisz odpowiednio: `title` i `Gertie the Dinosaur 2`. Sprawdź czy w sekcji `Headers` znajduje się linijka `Content-type:application/json` - jeśli nie, to ponownie ustaw Request body -> Type : JSON. Prześlij żądanie i zobacz czy tytuł filmu się zmienił? Spróbuj zmienić również czas trwania: `runtime` (czas trwania w minutach) i `rated`.
    3. DELETE: Zmień typ zapytania na DELETE. Wyślij zapytanie. Spróbuj wyświetlić film metodą GET.
-   4. POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź w sekcji Heders czy widzisz `application\json`. Prześlij żądanie i sprawdź czy Twój film pojawił się w bazie.
+   4. POST: Zmień typ zapytani na POST, wpisz adres: `http://localhost:3000/movie/`. W polu Request body -> Type ustaw JSON. Wpisz pola, np. title, runtime itd. i wyślij zapytanie. Sprawdź w sekcji Heders czy widzisz `application/json`. Prześlij żądanie i sprawdź czy Twój film pojawił się w bazie.
 
 ## Hosting - Heroku
 
