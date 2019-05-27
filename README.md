@@ -43,7 +43,8 @@ $ export DBUSER=newuser1
 $ export DBPASSWORD=VXVMxjGL4J0drEd
 $ export DBHOST=mycluster-egf9l.mongodb.net
 ```
-Jeśli checesz ustawić te dane na stałe, to dopisz je na końcu pliku `.profile`: `leafpad ~/.profile`. Ustawienia będą ładowane po każdym logowaniu.
+Jeśli checesz ustawić te dane na stałe, to dopisz je na końcu pliku `.profile`: `leafpad ~/.profile`. Ustawienia będą ładowane
+po każdym logowaniu.
 4. Uruchom swoją aplikację:
 ```
 $ npm start
@@ -69,31 +70,30 @@ $ git init
 $ git add .
 $ git commit -m "Initial commit"
 ```
-3. W katalogu aplikacji Heroku musi znaleźć się plik `Procfile`. Zawiera on wskazówkę jak uruchomić aplikację. Obejrzyj jak wygląda zawartość tego pliku. Na podstawie pliku `Procfile` Heroku rozpoznaje w jakim języku została napisana aplikacja i odpowiednio konfiguruje środowisko wykonawcze.
-2. Zaloguj się do heroku
+2. W katalogu aplikacji Heroku musi znaleźć się plik `Procfile`. Zawiera on wskazówkę jak uruchomić aplikację. Obejrzyj jak wygląda zawartość tego pliku. Na podstawie pliku `Procfile` Heroku rozpoznaje w jakim języku została napisana aplikacja i odpowiednio konfiguruje środowisko wykonawcze.
+3. Zaloguj się do heroku
 ```
 $ heroku login
 ```
-   W otwartym oknie przeglądarki podaj swoje konto i hasło. Zamknij okno przeglądarki i wróć do linii poleceń.
-3. Utwórz aplikację Heroku:
+W otwartym oknie przeglądarki podaj swoje konto i hasło. Zamknij okno przeglądarki i wróć do linii poleceń.
+4. Utwórz aplikację Heroku:
 ```
 $ heroku create
 ```
-   Po słowie `create` możesz podać nazwę swojej aplikacji, np.: `heroku create myapp456`. Heroku przyjmie ją pod warunkiem że nie będzie już zajęta przez kogoś innego. Jeśli nie podasz nazwy, to Heroku zaproponuje swoją. Zapamiętaj wyświetlony adres swojej aplikacji: np. `https://grateful-badlands-84219.herokuapp.com/`
-
-3. Skonfiguruj zmienne środowiskowe połączenia z bazą danych (zastąp przykładowe wartości swoimi):
+Po słowie `create` możesz podać nazwę swojej aplikacji, np.: `heroku create myapp456`. Heroku przyjmie ją pod warunkiem że nie będzie już zajęta przez kogoś innego. Jeśli nie podasz nazwy, to Heroku zaproponuje swoją. Zapamiętaj wyświetlony adres swojej aplikacji: np. `https://grateful-badlands-84219.herokuapp.com/`
+5. Skonfiguruj zmienne środowiskowe połączenia z bazą danych (zastąp przykładowe wartości swoimi):
 ```
 heroku config:set DBUSER=newuser1
 heroku config:set DBPASSWORD=VXVMxjGL4J0drEd
 heroku config:set DBHOST=mycluster-egf9l.mongodb.net
 ```
-4. Wyślij aplikację na serwer Heroku, skonfiguruj rozmiar usługi (za darmo dostajesz tylko 1 jednostkę) i sprawdź czy aplikacja działa:
+6. Wyślij aplikację na serwer Heroku, skonfiguruj rozmiar usługi (za darmo dostajesz tylko 1 jednostkę) i sprawdź czy aplikacja działa:
 ```
 git push heroku master
 heroku ps:scale web=1
 heroku open
 ```
-5. Tak jak w poprzednim zadaniu przetestuj aplikację działającą na Heroku używając przeglądarki Firefox i wtyczki RESTED. 
+7. Tak jak w poprzednim zadaniu przetestuj aplikację działającą na Heroku używając przeglądarki Firefox i wtyczki RESTED. 
      
 ## Zadanie
 1. Przerób aplikację tak, aby korzystała z innej przykładowej kolekcji w klastrze Atlas MongoDB.
